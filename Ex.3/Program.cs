@@ -6,7 +6,7 @@ namespace Ex._3
     {
         static void Main(string[] args)
         {
-            Stack stack = new Stack();
+            MyStack<string> stack = new MyStack<string>();
 
             stack.Push("Lena");
             stack.Push("Dima");

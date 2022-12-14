@@ -6,7 +6,7 @@ namespace Ex._4
     {
         static void Main(string[] args)
         {
-            Queue queue = new Queue();
+            MyQueue<string> queue = new MyQueue<string>();
 
             queue.Push("Tom");
             queue.Push("Chen");

@@ -6,27 +6,18 @@ using System.Threading.Tasks;
 
 namespace Ex._4.Classes
 {
-    internal class Queue
+    internal class MyQueue<T>
     {
-        private string[] _items;
-
-        private const int _lenghtArray = 4;
+        private T[] _items;
 
         private int _counter;
-
-        public string this[int index]
+       public T this[int index]
         {
             get => _items[index];   
         }
-
-        public Queue()
+        public MyQueue(int lenghtArray = 4)
         {
-            _items = new string[_lenghtArray];
-        }
-
-        public Queue(int lenghtArray)
-        {
-            _items = new string[lenghtArray];
+            _items = new T[lenghtArray];
         }
 
         private bool IsEmpty()
@@ -34,29 +25,28 @@ namespace Ex._4.Classes
             return _counter == 0;
         }
 
-        public void Push(string item)
+        public void Push(T item)
         {
             if(_counter >= _items.Length)
                 Array.Resize(ref _items, _items.Length * 2);
             _items[_counter++] = item;
         }
 
-        public string Pop()
+        public T Pop()
         {
             if(IsEmpty())
                 throw new InvalidOperationException("Очередь пуста");
 
-            string result = _items[0];
-            _items[0] = null;
-            Swap();
-            _counter--;
+            T result = _items[0];
+             Swap();
+            _items[--_counter] = default;
 
             return result;
         }
 
         private void Swap()
         {
-            for (int i = 1; i < _items.Length; i++)
+            for (int i = 1; i < _counter; i++)
             {
                 _items[i - 1] = _items[i];
             }

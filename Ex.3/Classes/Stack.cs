@@ -7,27 +7,19 @@ using System.Threading.Tasks;
 
 namespace Ex._3.Classes
 {
-    internal class Stack
+    internal class MyStack<T>
     {
-        private string[] _items;
+        private T[] _items;
 
         private int counter;
-
-        private const int lenghtArray = 4;
-
-        public string this[int index]
+        public T this[int index] 
         {
             get => _items[index];
         }
 
-        public Stack()
+        public MyStack(int lenghtArray = 4)
         {
-            _items = new string[lenghtArray];
-        }
-
-        public Stack(int lenghtArray)
-        {
-            _items = new string[lenghtArray];
+            _items = new T[lenghtArray];
         }
 
         private bool IsEmpty()
@@ -35,7 +27,7 @@ namespace Ex._3.Classes
              return counter == 0; 
         }
 
-        public void Push(string item)
+        public void Push(T item)
         {
             if(counter >= _items.Length)
                 Array.Resize(ref _items, _items.Length * 2);
@@ -43,13 +35,13 @@ namespace Ex._3.Classes
             counter++;
         }
 
-        public string Pop()
+        public T Pop()
         {
             if (IsEmpty())
                 throw new InvalidOperationException("Стек пуст");
             counter--;
-            string result = _items[counter];
-            _items[counter] = null;
+            T result = _items[counter];
+            _items[counter] = default;
             return result;
         }
 
